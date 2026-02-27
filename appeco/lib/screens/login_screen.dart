@@ -38,7 +38,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 prefixIcon: Icon(Icons.email),
                 border: OutlineInputBorder(),
               ),
-            )
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: senhaController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Senha',
+                prefixIcon: Icon(Icons.lock),
+                border: OutlineInputBorder(),
+              ),
+            ),
           ],
         ),
       ),
