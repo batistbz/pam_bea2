@@ -123,11 +123,37 @@ void initState() {
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+
+            const SizedBox(height: 24), // espaço entre o campo de senha e o botão
+
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green, // cor de fundo do botão
+                foregroundColor: const Color.fromARGB(255, 73, 73, 73), // cor do textinho dentro do botão
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               onPressed: () {
               },
               child: const Text("Entrar"),
+            ),
+
+            const SizedBox(height: 24), // espaço entre o botão de entrar e o de criar conta
+
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green, // cor de fundo do botão
+                foregroundColor: const Color.fromARGB(255, 73, 73, 73), // cor do textinho dentro do botão
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: () { 
+              },
+              child: const Text("Criar Conta"),
             ),
           ],
         ),
