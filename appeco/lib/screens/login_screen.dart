@@ -14,7 +14,19 @@ class _LoginScreenState extends State<LoginScreen> {
   //criar as variantes
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
+  FocusNode emailFocus = FocusNode();
+  FocusNode senhaFocus = FocusNode();
 
+@override
+void initState() {
+  super.initState();
+  emailFocus.addListener(() {
+    setState(() {});
+  });
+  senhaFocus.addListener(() {
+    setState(() {});
+  });
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,23 +40,62 @@ class _LoginScreenState extends State<LoginScreen> {
                 'assets/ecotrack.png', // logo no lugar do nome por escrito
                 height: 210,
             ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 20), // espacinho entre a logo e os campos de texto
             TextField(
+              focusNode: emailFocus,
               controller: emailController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Email',
-                prefixIcon: Icon(Icons.email),
-                border: OutlineInputBorder(),
+
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: emailFocus.hasFocus ? Colors.green : const Color.fromARGB(255, 84, 83, 83), // muda a cor do icone
+                ),
+
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: Colors.green,
+                    width: 2,
+                  ),
+                ),
+
+                floatingLabelStyle: TextStyle(
+                  color: Colors.green,
+                ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 16), // espacinho entre os campos de texto
             TextField(
+              focusNode: senhaFocus,
               controller: senhaController,
               obscureText: true,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Senha',
-                prefixIcon: Icon(Icons.lock),
-                border: OutlineInputBorder(),
+
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: senhaFocus.hasFocus ? Colors.green : const Color.fromARGB(255, 84, 83, 83), // muda a cor do icone
+                ),
+
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: Colors.green,
+                    width: 2,
+                  ),
+                ),
+                floatingLabelStyle: TextStyle(
+                  color: Colors.green,
+                ),
               ),
             ),
           ],
