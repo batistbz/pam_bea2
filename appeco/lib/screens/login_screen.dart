@@ -18,19 +18,17 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 229, 248, 231), // cor de fundo
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: Text("Ecotrack",
-                  style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green[700])
-              ),
+            Image.asset(
+                'assets/ecotrack.png', // logo no lugar do nome por escrito
+                height: 210,
             ),
+              const SizedBox(height: 20),
             TextField(
               controller: emailController,
               decoration: const InputDecoration(
