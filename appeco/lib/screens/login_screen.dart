@@ -16,6 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController senhaController = TextEditingController();
   FocusNode emailFocus = FocusNode();
   FocusNode senhaFocus = FocusNode();
+  double opacity = 0.5;
 
 @override
 void initState() {
@@ -36,9 +37,33 @@ void initState() {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-                'assets/ecotrack.png', // logo no lugar do nome por escrito
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
                 height: 210,
+                width: 210,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: AlignmentGeometry.bottomCenter,
+                      end: AlignmentGeometry.topCenter,
+                      colors: [
+                        Color.fromARGB(255, 229, 248, 231),
+                        Color.fromARGB(255, 218, 245, 221),
+                        Color.fromARGB(255, 196, 240, 217),
+                        Color.fromARGB(255, 229, 248, 231)
+                      ],
+                    ),
+                  ),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Image.asset(
+                'assets/ecotrack.png',
+                height: 210,
+              ),
+            )
+              ],
             ),
               const SizedBox(height: 20), // espacinho entre a logo e os campos de texto
             TextField(
@@ -97,6 +122,12 @@ void initState() {
                   color: Colors.green,
                 ),
               ),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () {
+              },
+              child: const Text("Entrar"),
             ),
           ],
         ),
