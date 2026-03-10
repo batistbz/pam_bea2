@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'register_screen.dart';
 
 //com comandos para facilitar
 //stl - para criação de classes Statefull /Stat
@@ -129,7 +130,7 @@ void initState() {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green, // cor de fundo do botão
-                foregroundColor: const Color.fromARGB(255, 73, 73, 73), // cor do textinho dentro do botão
+                foregroundColor: Colors.white, // cor do textinho dentro do botão
                 padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -145,15 +146,21 @@ void initState() {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green, // cor de fundo do botão
-                foregroundColor: const Color.fromARGB(255, 73, 73, 73), // cor do textinho dentro do botão
+                foregroundColor: Colors.white, // cor do textinho dentro do botão
                 padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () { 
-              },
-              child: const Text("Criar Conta"),
+            onPressed: () { 
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const RegisterScreen(),
+                ),
+              );
+            },
+            child: const Text("Criar conta"),
             ),
           ],
         ),
