@@ -41,10 +41,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       backgroundColor: Colors.green[50],
       appBar: AppBar(
-      
-        centerTitle: true,
+        backgroundColor: Colors.green[50],
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.green,
+        leadingWidth: 120,
+        leading: Padding(
+          padding: EdgeInsets.all(8),
+          child: Image.asset(
+            "assets/ecotrack.png",
+          height: 150,
+          width: 150,
+          fit: BoxFit.contain,
+          ),
+        ),
       ),
 
       body: Padding(
