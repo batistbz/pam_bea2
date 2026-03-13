@@ -7,7 +7,7 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterScreenState extends State<RegisterScreen> { // variaveis para o preenchimento dos campos
 
   FocusNode nomeFocus = FocusNode();
   FocusNode rmFocus = FocusNode();
@@ -39,20 +39,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[50],
-      appBar: AppBar(
+      backgroundColor:  Color.fromARGB(255, 229, 248, 231), // cor de fundo
+      appBar: AppBar( // navbar com logo do lado esquerdo
         backgroundColor: Colors.green[50],
         automaticallyImplyLeading: false,
         toolbarHeight: 80,
           titleSpacing: 0,
           title: Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20),
+            padding: const EdgeInsets.only(top: 10, left: 20), // espaço da logo entre as margens
             child: Image.asset(
               'assets/ecotrack.png',
-              width: 110,
+              width: 110, // tamanho da logo
             ),
           ),
-      ),
+      ), 
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: SingleChildScrollView(
@@ -64,11 +64,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: "Nome",
 
-                  prefixIcon: Icon(
+                  prefixIcon: Icon(  // alteração de cor do icone quando clicado
                     Icons.person,
                     color: nomeFocus.hasFocus ? Colors.green : Colors.grey,
                   ),
-
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -87,14 +86,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
 
-              const SizedBox(height: 15),
+              const SizedBox(height: 15), // espaço entre um campo e outro
 
               TextField(
                 focusNode: rmFocus,
                 decoration: InputDecoration(
                   labelText: "RM",
 
-                  prefixIcon: Icon(
+                  prefixIcon: Icon(  // alteração de cor do icone quando clicado
                     Icons.badge,
                     color: rmFocus.hasFocus ? Colors.green : Colors.grey,
                   ),
@@ -117,14 +116,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
 
-              const SizedBox(height: 15),
+              const SizedBox(height: 15), // espaço entre um campo e outro
 
               TextField(
                 focusNode: turmaFocus,
                 decoration: InputDecoration(
                   labelText: "Turma",
 
-                  prefixIcon: Icon(
+                  prefixIcon: Icon( // alteração de cor do icone quando clicado
                     Icons.groups,
                     color: turmaFocus.hasFocus ? Colors.green : Colors.grey,
                   ),
@@ -147,14 +146,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
 
-              const SizedBox(height: 15),
+              const SizedBox(height: 15), // espaço entre um campo e outro
 
               TextField(
                 focusNode: emailFocus,
                 decoration: InputDecoration(
                   labelText: "Email",
 
-                  prefixIcon: Icon(
+                  prefixIcon: Icon( // alteração de cor do icone quando clicado
                     Icons.email,
                     color: emailFocus.hasFocus ? Colors.green : Colors.grey,
                   ),
@@ -177,7 +176,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
 
-              const SizedBox(height: 15),
+              const SizedBox(height: 15), // espaço entre um campo e outro
 
               TextField(
                 focusNode: senhaFocus,
@@ -185,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: "Senha",
 
-                  prefixIcon: Icon(
+                  prefixIcon: Icon( // alteração de cor do icone quando clicado
                     Icons.lock,
                     color: senhaFocus.hasFocus ? Colors.green : Colors.grey,
                   ),
@@ -208,9 +207,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 30), // espaço entre o campo de senha e o botão
 
-              ElevatedButton(
+              ElevatedButton( // estilização do botão
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
                   padding: const EdgeInsets.symmetric(
@@ -224,7 +223,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 onPressed: () {},
 
-                child: const Text(
+                child: const Text( // estilização do textinho dentro do botão
                   "Cadastrar",
                   style: TextStyle(
                     fontSize: 16,
@@ -243,7 +242,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   "Já tenho conta",
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.green,
+                    color: Colors.green, // cor do texto dentro do botão
                   ),
                 ),
               ),
