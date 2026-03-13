@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'register_screen.dart';
-
 //com comandos para facilitar
 //stl - para criação de classes Statefull /Stat
 
