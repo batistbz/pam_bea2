@@ -43,24 +43,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green[50],
         automaticallyImplyLeading: false,
-        leadingWidth: 120,
-        leading: Padding(
-          padding: EdgeInsets.all(8),
-          child: Image.asset(
-            "assets/ecotrack.png",
-          height: 150,
-          width: 150,
-          fit: BoxFit.contain,
+        toolbarHeight: 80,
+          titleSpacing: 0,
+          title: Padding(
+            padding: const EdgeInsets.only(top: 10, left: 20),
+            child: Image.asset(
+              'assets/ecotrack.png',
+              width: 110,
+            ),
           ),
-        ),
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: SingleChildScrollView(
           child: Column(
             children: [
-
+              const SizedBox(height: 20),
               TextField(
                 focusNode: nomeFocus,
                 decoration: InputDecoration(
@@ -228,7 +226,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 child: const Text(
                   "Cadastrar",
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
               ),
 
@@ -238,7 +239,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Já tenho conta"),
+                child: const Text(
+                  "Já tenho conta",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.green,
+                  ),
+                ),
               ),
 
             ],

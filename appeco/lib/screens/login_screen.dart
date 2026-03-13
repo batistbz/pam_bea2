@@ -15,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   //criar as variantes
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   FocusNode emailFocus = FocusNode();
   FocusNode senhaFocus = FocusNode();
   double opacity = 0.5;
