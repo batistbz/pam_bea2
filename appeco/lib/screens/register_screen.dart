@@ -1,3 +1,4 @@
+import 'package:appeco/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -44,15 +45,24 @@ class _RegisterScreenState extends State<RegisterScreen> { // variaveis para o p
         backgroundColor: Colors.green[50],
         automaticallyImplyLeading: false,
         toolbarHeight: 80,
-          titleSpacing: 0,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20), // espaço da logo entre as margens
+        titleSpacing: 0,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20), // espaço da logo entre as margens
+          child: GestureDetector(
+            onTap: () {
+              // Navega para a 'DetalhesPage'
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+              );
+            },
             child: Image.asset(
               'assets/ecotrack.png',
               width: 110, // tamanho da logo
             ),
           ),
-      ), 
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: SingleChildScrollView(
