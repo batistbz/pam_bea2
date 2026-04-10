@@ -1,4 +1,5 @@
 import 'package:appeco/screens/home_screen.dart';
+import 'package:appeco/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -53,7 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> { // variaveis para o p
               // Navega para a 'DetalhesPage'
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
               );
             },
             child: Image.asset(

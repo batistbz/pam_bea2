@@ -1,3 +1,4 @@
+import 'package:appeco/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'register_screen.dart';
 //com comandos para facilitar
@@ -136,8 +137,14 @@ void initState() {
                 ),
               ),
               onPressed: () {
-              },
-              child: const Text("Entrar"),
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
+                ),
+              );
+            },
+            child: const Text("Entrar"),
             ),
 
             const SizedBox(height: 24), // espaço entre o botão de entrar e o de criar conta

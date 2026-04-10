@@ -1,3 +1,4 @@
+import 'package:appeco/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,19 +13,26 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 229, 248, 231),
-
-      // 🔝 APPBAR (igual ao seu)
-      appBar: AppBar(
+      backgroundColor:  Color.fromARGB(255, 229, 248, 231), // cor de fundo
+      appBar: AppBar( // navbar com logo do lado esquerdo
         backgroundColor: Colors.green[50],
         automaticallyImplyLeading: false,
         toolbarHeight: 80,
         titleSpacing: 0,
         title: Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20),
-          child: Image.asset(
-            'assets/ecotrack.png',
-            width: 110,
+          padding: const EdgeInsets.only(top: 10, left: 20), // espaço da logo entre as margens
+          child: GestureDetector(
+            onTap: () {
+              // Navega para a 'DetalhesPage'
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            },
+            child: Image.asset(
+              'assets/ecotrack.png',
+              width: 110, // tamanho da logo
+            ),
           ),
         ),
       ),
@@ -39,11 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // 👋 Cabeçalho
               const Text(
-                "Olá, Erika 👋",
+                "Olá, Beatriz 👋",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 4),
-              const Text("Bem-vinda ao EcoTrack"),
+              const Text("Bem-vindo(a) ao EcoTrack"),
 
               const SizedBox(height: 20),
 
