@@ -20,7 +20,7 @@ class AtividadeItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color.fromARGB(201, 255, 255, 255),
         borderRadius: BorderRadius.circular(16),
         boxShadow: const [
           BoxShadow(

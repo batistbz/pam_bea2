@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  final String userName = 'Erika';
+  final String userName = 'Beatriz'; // string que diz qual nome irá aparecer quando citada
 
   @override
   Widget build(BuildContext context) {
