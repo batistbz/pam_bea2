@@ -1,168 +1,268 @@
-import 'package:appeco/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:appeco/widgets/resumo_card.dart';
+import 'package:appeco/widgets/acao_rapida_card.dart';
+import 'package:appeco/widgets/atividade_item_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
- State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+
+  final String userName = 'Erika';
 
   @override
   Widget build(BuildContext context) {
+    final String dataAtual =
+        DateTime.now().toString().split(' ')[0];
+
     return Scaffold(
-      backgroundColor:  Color.fromARGB(255, 229, 248, 231), // cor de fundo
-      appBar: AppBar( // navbar com logo do lado esquerdo
-        backgroundColor: const Color.fromARGB(255, 229, 248, 231), // mesma cor do fundo
+      backgroundColor: const Color.fromARGB(255, 229, 248, 231),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 229, 248, 231),
+        elevation: 0,
         automaticallyImplyLeading: false,
-        toolbarHeight: 80,
-        titleSpacing: 0,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20), // espaço da logo entre as margens
-          child: GestureDetector(
-            onTap: () {
-              // Navega para a 'DetalhesPage'
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
-              );
-            },
-            child: Image.asset(
-              'assets/ecotrack.png',
-              width: 110, // tamanho da logo
+        title: const Row(
+          children: [
+            Image(
+              image: AssetImage('assets/ecotrack.png'),
+              height: 100,
+              width: 100,
             ),
-          ),
+            SizedBox(width: 18),
+          ],
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.home), // botão para voltar para a home
-            onPressed: () {},
+            icon: const Icon(Icons.person, color: Color.fromARGB(255, 43, 112, 28)),
+            onPressed: () {
+              // Ir para perfil
+            },
           ),
           IconButton(
-            icon: const Icon(Icons.article), // botão para acessar os relatorios
-            onPressed: () {},
+            icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 43, 112, 28)),
+            onPressed: () {
+              // Ir para notificações
+            },
           ),
           IconButton(
-            icon: const Icon(Icons.location_on), // botão para ver os pontos de coleta
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.person), // botão para ver seu perfil
-            onPressed: () {},
+            icon: const Icon(Icons.logout, color: Color.fromARGB(255, 43, 112, 28)),
+            onPressed: () {
+              // Fazer logout
+            },
           ),
         ],
       ),
-
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Olá, Beatriz 👋",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Saudação
+            Text(
+              'Olá, $userName 👋',
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 21, 175, 62),
               ),
-              const SizedBox(height: 4),
-              const Text("Bem-vindo(a) ao EcoTrack"),
-
-              const SizedBox(height: 20),
-
-              const Text( 
-                "📊 RESUMO",
-                style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            const Text(
+              'Bem-vinda ao EcoTrack',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black54,
               ),
-              const SizedBox(height: 10),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  resumoCard("♻️", "12", "Coletas"),
-                  resumoCard("🏆", "340", "Pontos"),
-                  resumoCard("🌱", "18kg", "CO₂"),
-                  resumoCard("🎯", "75%", "Meta"),
-                ],
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Hoje: $dataAtual',
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.black45,
               ),
+            ),
 
-              const SizedBox(height: 10),
+            const SizedBox(height: 24),
 
-              const SizedBox(height: 20),
-
-              const Text(
-                "⚡ AÇÕES RÁPIDAS",
-                style: TextStyle(fontWeight: FontWeight.bold),
+            // Resumo
+            const Text(
+              '📊 RESUMO',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 14, 114, 40),
               ),
-              const SizedBox(height: 10),
+            ),
+            const SizedBox(height: 12),
 
-              acaoItem(Icons.add, "Registrar coleta"),
-              acaoItem(Icons.location_on, "Pontos de coleta"),
-              acaoItem(Icons.bar_chart, "Relatórios"),
-              acaoItem(Icons.history, "Histórico"),
+            GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+              childAspectRatio: 1.3,
+              children: [
+                ResumoCard(
+                  icon: Icons.recycling,
+                  title: 'Coletas',
+                  value: '12',
+                ),
+                ResumoCard(
+                  icon: Icons.emoji_events,
+                  title: 'Pontos',
+                  value: '340',
+                ),
+                ResumoCard(
+                  icon: Icons.eco,
+                  title: 'CO₂',
+                  value: '18kg',
+                ),
+                ResumoCard(
+                  icon: Icons.track_changes,
+                  title: 'Meta',
+                  value: '75%',
+                ),
+              ],
+            ),
 
-              const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
-              const Text(
-                "🕒 ATIVIDADES RECENTES",
-                style: TextStyle(fontWeight: FontWeight.bold),
+            // Ações rápidas
+            const Text(
+              '⚡ AÇÕES RÁPIDAS',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 14, 114, 40),
               ),
-              const SizedBox(height: 10),
+            ),
+            const SizedBox(height: 12),
 
-              atividadeItem("♻️ Plástico reciclado", "+20 pts"),
-              atividadeItem("📄 Papel descartado", "+10 pts"),
-              atividadeItem("🍾 Vidro reciclado", "+15 pts"),
-            ],
-          ),
+            GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+              childAspectRatio: 1.7,
+              children: [
+                AcaoRapidaCard(
+                  icon: Icons.add_circle_outline,
+                  title: 'Registrar coleta',
+                  onTap: () {},
+                ),
+                AcaoRapidaCard(
+                  icon: Icons.location_on_outlined,
+                  title: 'Pontos de coleta',
+                  onTap: () {},
+                ),
+                AcaoRapidaCard(
+                  icon: Icons.bar_chart,
+                  title: 'Relatórios',
+                  onTap: () {},
+                ),
+                AcaoRapidaCard(
+                  icon: Icons.history,
+                  title: 'Histórico',
+                  onTap: () {},
+                ),
+                AcaoRapidaCard(
+                  icon: Icons.flag_outlined,
+                  title: 'Metas ambientais',
+                  onTap: () {},
+                ),
+                AcaoRapidaCard(
+                  icon: Icons.lightbulb_outline,
+                  title: 'Dicas sustentáveis',
+                  onTap: () {},
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 24),
+
+            // Atividades recentes
+            const Text(
+              '🕒 ATIVIDADES RECENTES',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 14, 114, 40),
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            const AtividadeItem(
+              icon: Icons.recycling,
+              title: 'Plástico reciclado',
+              points: '+20 pts',
+            ),
+            const SizedBox(height: 10),
+            const AtividadeItem(
+              icon: Icons.description_outlined,
+              title: 'Papel descartado',
+              points: '+10 pts',
+            ),
+            const SizedBox(height: 10),
+            const AtividadeItem(
+              icon: Icons.local_drink_outlined,
+              title: 'Vidro reciclado',
+              points: '+15 pts',
+            ),
+            const SizedBox(height: 10),
+            const AtividadeItem(
+              icon: Icons.notifications_active_outlined,
+              title: 'Meta semanal atualizada',
+              points: 'Nova meta',
+            ),
+
+            const SizedBox(height: 24),
+          ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        backgroundColor: const Color.fromARGB(255, 229, 248, 231),
+        selectedItemColor: const Color.fromARGB(255, 38, 88, 39),
+        unselectedItemColor:const Color(0xFF4CAF50),
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
 
-      // 👇 sua navbar entra aqui depois
-      // bottomNavigationBar: SuaNavBar(),
-    );
-  }
-
-  // 🔲 Card de resumo
-  Widget resumoCard(String icon, String valor, String label) {
-    return Container(
-      width: 160,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        children: [
-          Text(icon, style: const TextStyle(fontSize: 20)),
-          const SizedBox(height: 5),
-          Text(
-            valor,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+          // Exemplo de navegação futura:
+          // if (index == 1) Navigator.push(...);
+          // if (index == 2) Navigator.push(...);
+          // if (index == 3) Navigator.push(...);
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-          Text(label),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: 'Histórico',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Mapa',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Perfil',
+          ),
         ],
       ),
-    );
-  }
-
-  // ⚡ Ações rápidas
-  Widget acaoItem(IconData icon, String texto) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(texto),
-      onTap: () {},
-    );
-  }
-
-  // 🕒 Atividades recentes
-  Widget atividadeItem(String titulo, String pontos) {
-    return ListTile(
-      leading: Text(titulo.split(" ")[0]),
-      title: Text(titulo.substring(2)),
-      trailing: Text(pontos),
     );
   }
 }
+

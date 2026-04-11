@@ -1,4 +1,3 @@
-import 'package:appeco/screens/home_screen.dart';
 import 'package:appeco/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
