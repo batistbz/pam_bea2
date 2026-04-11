@@ -1,6 +1,8 @@
 import 'package:appeco/screens/home_screen.dart';
+import 'package:appeco/screens/register_screen.dart';
+import 'package:appeco/services/auth_services.dart';
 import 'package:flutter/material.dart';
-import 'register_screen.dart';
+
 //com comandos para facilitar
 //stl - para criação de classes Statefull /Stat
 
@@ -12,165 +14,150 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  //criar as variantes
+  //criar as variaveis
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
-  FocusNode emailFocus = FocusNode();
-  FocusNode senhaFocus = FocusNode();
-  double opacity = 0.5;
+  final _formKey = GlobalKey<FormState>();
+  bool ocultarSenha = true;
+  final AuthService authService = AuthService();
 
-@override
-void initState() {
-  super.initState();
-  emailFocus.addListener(() {
-    setState(() {});
-  });
-  senhaFocus.addListener(() {
-    setState(() {});
-  });
-}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 229, 248, 231), // cor de fundo
       body: Padding(
         padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                height: 210,
-                width: 210,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: AlignmentGeometry.bottomCenter,
-                      end: AlignmentGeometry.topCenter,
-                      colors: [
-                        Color.fromARGB(255, 229, 248, 231),
-                        Color.fromARGB(255, 218, 245, 221),
-                        Color.fromARGB(255, 196, 240, 217),
-                        Color.fromARGB(255, 229, 248, 231)
-                      ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Stack(
+                //alignment: Alignment.bottomLeft,
+                children: [
+                  Image.asset(
+                    "assets/ecotrack.png",
+                    width: 210,
+                    height: 210,
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              ),
+              SizedBox(height: 50), // espaço entre a logo e os campos de texto
+              TextFormField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'E-mail',
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Digite seu e-mail";
+                  }
+                  if (!value.contains("@") || !value.contains(".")) {
+                    return "E-mail Inválido";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 30),
+              TextFormField(
+                controller: senhaController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Digite sua senha";
+                  }
+                  if (value.length < 6) {
+                    return "Senha deve ter no mínimo 6 caracteres";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 30),
+              SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterScreen()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: Text(
+                    "Criar Conta",
+                    style: TextStyle(
+                      fontFamily: "Arial",
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                'assets/ecotrack.png',
-                height: 210,
+                ),
               ),
-            )
-              ],
-            ),
-              const SizedBox(height: 20), // espacinho entre a logo e os campos de texto
-            TextField(
-              focusNode: emailFocus,
-              controller: emailController,
-              decoration: InputDecoration(
-                labelText: 'Email',
 
-                prefixIcon: Icon(
-                  Icons.email,
-                  color: emailFocus.hasFocus ? Colors.green : const Color.fromARGB(255, 84, 83, 83), // muda a cor do icone
-                ),
-
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Colors.green,
-                    width: 2,
+              SizedBox(height: 30),
+              SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () {
+                    //print("Relizar Login");
+                    validarLogin();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen()),
+                    );
+                  },
+                  child: Text(
+                    "Entrar",
+                    style: TextStyle(
+                      fontFamily: "Arial",
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-
-                floatingLabelStyle: TextStyle(
-                  color: Colors.green,
-                ),
               ),
-            ),
-            const SizedBox(height: 16), // espacinho entre os campos de texto
-            TextField(
-              focusNode: senhaFocus,
-              controller: senhaController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Senha',
-
-                prefixIcon: Icon(
-                  Icons.lock,
-                  color: senhaFocus.hasFocus ? Colors.green : const Color.fromARGB(255, 84, 83, 83), // muda a cor do icone
-                ),
-
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Colors.green,
-                    width: 2,
-                  ),
-                ),
-                floatingLabelStyle: TextStyle(
-                  color: Colors.green,
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 24), // espaço entre o campo de senha e o botão
-
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // cor de fundo do botão
-                foregroundColor: Colors.white, // cor do textinho dentro do botão
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              onPressed: () {
-                Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ),
-              );
-            },
-            child: const Text("Entrar"),
-            ),
-
-            const SizedBox(height: 24), // espaço entre o botão de entrar e o de criar conta
-
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // cor de fundo do botão
-                foregroundColor: Colors.white, // cor do textinho dentro do botão
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            onPressed: () { 
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const RegisterScreen(),
-                ),
-              );
-            },
-            child: const Text("Criar conta"),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  //função validar login
+  void validarLogin() {
+    if (_formKey.currentState!.validate()) {
+      String email = emailController.text;
+      String senha = senhaController.text;
+
+      String? resultado = authService.login(email, senha);
+
+      if (resultado != null) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(resultado)));
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Login Realizado com Sucesso")));
+      }
+    }
   }
 }
