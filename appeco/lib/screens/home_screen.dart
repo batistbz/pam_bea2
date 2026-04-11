@@ -35,6 +35,24 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.home), // botão para voltar para a home
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.article), // botão para acessar os relatorios
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.location_on), // botão para ver os pontos de coleta
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.person), // botão para ver seu perfil
+            onPressed: () {},
+          ),
+        ],
       ),
 
       body: Padding(
@@ -74,7 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 20),
 
-              // ⚡ AÇÕES RÁPIDAS
               const Text(
                 "⚡ AÇÕES RÁPIDAS",
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -88,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 20),
 
-              // 🕒 ATIVIDADES RECENTES
               const Text(
                 "🕒 ATIVIDADES RECENTES",
                 style: TextStyle(fontWeight: FontWeight.bold),
