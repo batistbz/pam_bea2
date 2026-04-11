@@ -61,8 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              // 👋 Cabeçalho
               const Text(
                 "Olá, Beatriz 👋",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -72,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 20),
 
-              const Text(
+              const Text( 
                 "📊 RESUMO",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
