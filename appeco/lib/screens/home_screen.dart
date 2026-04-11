@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor:  Color.fromARGB(255, 229, 248, 231), // cor de fundo
       appBar: AppBar( // navbar com logo do lado esquerdo
-        backgroundColor: Colors.green[50],
+        backgroundColor: const Color.fromARGB(255, 229, 248, 231), // mesma cor do fundo
         automaticallyImplyLeading: false,
         toolbarHeight: 80,
         titleSpacing: 0,
