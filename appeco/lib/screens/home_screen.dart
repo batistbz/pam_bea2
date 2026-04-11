@@ -37,7 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
-      // 👇 BODY (parte nova organizada)
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -55,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 20),
 
-              // 📊 RESUMO
               const Text(
                 "📊 RESUMO",
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -67,18 +65,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   resumoCard("♻️", "12", "Coletas"),
                   resumoCard("🏆", "340", "Pontos"),
-                ],
-              ),
-
-              const SizedBox(height: 10),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
                   resumoCard("🌱", "18kg", "CO₂"),
                   resumoCard("🎯", "75%", "Meta"),
                 ],
               ),
+
+              const SizedBox(height: 10),
 
               const SizedBox(height: 20),
 
