@@ -16,7 +16,7 @@ class AuthService {
   })async{
     // tratamento de exceções
     try{
-      UserCredntial credencial = await _auth.createUserWithEmailAndPassword(
+      UserCredential credencial = await _auth.createUserWithEmailAndPassword(
         email: email, 
         password: password
         );
@@ -33,7 +33,9 @@ class AuthService {
       return null; 
 
     } on FirebaseAuthException catch(e){
-      
+        if(e.code == 'email-already-in-use'){
+          return 'Este email já está cadastrado';
+        }
     }
   }
 }
