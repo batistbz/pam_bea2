@@ -30,7 +30,10 @@ class AuthService {
         'senha': senha,
         'confirmarsenha': confirmarsenha
       });
+      return null; 
+
+    } on FirebaseAuthException catch(e){
+      
     }
-    return null; 
   }
 }
