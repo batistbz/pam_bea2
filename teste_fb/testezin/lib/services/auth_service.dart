@@ -1,41 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+class AuthService{
 
-class AuthService {
-  final FirebaseAuth _auth = Firebase.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final String usuarioCadastrado = "admin@ecotrack.com";
+  final String senhaCadastrada = "123456";
 
-  Future<String?> registrarUsuario ({
-    required String nome,
-    required String sobrenome,
-    required String email,
-    required String telefone,
-    required String senha,
-    required String confirmarsenha
+  String? login(String email, String senha){
 
-  })async{
-    // tratamento de exceções
-    try{
-      UserCredential credencial = await _auth.createUserWithEmailAndPassword(
-        email: email, 
-        password: password
-        );
-
-      String uid = credencial.user!.uid;
-      await _firestore.collection('usuarios').doc(uid).set({
-        'nome': nome,
-        'sobrenome': sobrenome,
-        'email': email,
-        'telefone': telefone,
-        'senha': senha,
-        'confirmarsenha': confirmarsenha
-      });
-      return null; 
-
-    } on FirebaseAuthException catch(e){
-        if(e.code == 'email-already-in-use'){
-          return 'Este email já está cadastrado';
-        }
+    if (email != usuarioCadastrado){
+      return "Usuário não Cadastrado";
     }
+    if (senha != senhaCadastrada){
+      return "Usuário ou Senha incorretos";
+    }
+    return null;
   }
 }
